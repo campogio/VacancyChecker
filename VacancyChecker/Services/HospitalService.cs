@@ -46,13 +46,9 @@ namespace VacancyChecker.Services
 
                 IEnumerable<Hospital> hospitals;
 
-                var query = from Hospital in e.Hospitals
-                            join Ward in e.Wards on Hospital.Id equals Ward.HospitalId
-                            join Bed in e.Beds on Ward.Id equals Bed.WardId
-                            where Bed.PatientId == null
-                            select Hospital;
+                var query = from Hospital in e.Hospitals select Hospital;
 
-                hospitals = query.Include(x => x.Wards).ThenInclude(x => x.Beds).ToList();
+                hospitals = query.Include(x => x.Wards).ThenInclude(x => x.Beds.Where(y => y.PatientId == null)).ToList();
 
                 return hospitals;
             }
