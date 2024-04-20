@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using VacancyChecker.Data;
 using VacancyChecker.Models;
 using VacancyChecker.ServiceInterfaces;
 using VacancyChecker.Services;
+using VacancyChecker.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

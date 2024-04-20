@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using VacancyChecker;
 using VacancyChecker.Data;
 using VacancyChecker.Models;
 using VacancyChecker.ServiceInterfaces;

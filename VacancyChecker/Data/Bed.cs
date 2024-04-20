@@ -11,7 +11,9 @@ public partial class Bed
 
     public int? WardId { get; set; }
 
-    public virtual ICollection<Patient> Patients { get; set; } = new List<Patient>();
+    public DateTime? PatientLeavingAt { get; set; }
+
+    public virtual Patient? Patient { get; set; }
 
     public virtual Ward? Ward { get; set; }
 }

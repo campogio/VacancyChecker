@@ -1,4 +1,5 @@
-﻿using VacancyChecker.Data;
+﻿using VacancyChecker;
+using VacancyChecker.Data;
 using VacancyChecker.Models;
 
 namespace VacancyChecker.ServiceInterfaces
@@ -12,6 +13,8 @@ namespace VacancyChecker.ServiceInterfaces
         HospitalModel get(int id);
 
         IEnumerable<Hospital> getByAvailableBeds();
+
+        IEnumerable<Hospital> getByAvailableBeds(DateTime patientArrival);
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using VacancyChecker.Data;
+﻿using VacancyChecker;
+using VacancyChecker.Data;
 
 namespace VacancyChecker.Models
 {

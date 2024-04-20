@@ -12,6 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Bootstrap Sidebar Layout</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -44,10 +45,10 @@
                 <h2>Sidebar</h2>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" asp-controller="VacancyView" asp-action="Index">All By Hospital</a>
+                        <a class="nav-link" asp-controller="VacancyView" asp-action="Index">All By Hospital</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="VacancyView" asp-action="IndexByArrivalTime" asp-route-dateTime="@DateTime.Now">By time of arrival</a>
+                        <a class="nav-link active" asp-controller="VacancyView" asp-action="IndexByArrivalTime" asp-route-dateTime="@DateTime.Now">By time of arrival</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Other options go here</a>
@@ -57,56 +58,69 @@
 
             <!-- Content -->
             <div class="col-md-9 content">
+
+                <form asp-controller="VacancyView" asp-action="IndexByArrivalTime">
+
+                    <input type="datetime-local" id="dateTime" name="dateTime" value="@DateTime.Now">
+
+
+                    <button type="submit">Submit</button>
+
+                </form>
+
                 <h2>Content</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel justo vitae risus tempor blandit. Nullam rutrum, libero vel gravida efficitur, magna enim ultrices purus, at malesuada nunc dui et purus. Sed dapibus suscipit vestibulum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum convallis odio et ipsum luctus, id tincidunt eros commodo. Duis ut quam eu erat varius fermentum. Nulla facilisi. Vestibulum mattis, enim non lacinia mollis, lacus ex feugiat ipsum, non lacinia nisi mi et lectus.</p>
 
                 <div id="accordion">
 
 
-                    @foreach (Hospital hospital in Model.results)
-                    {
+                    <!-- To handle if a bad datetime is inputted (Submit button is hit without putting a date) Done to save time.-->
+                    @if(Model != null){
 
-                        string name = @hospital.Name.Replace(" ", "");
+                        @foreach (Hospital hospital in Model.results)
+                        {
 
-                        <div class="card">
-                            <div class="card-header" id="headingOne">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#@name@hospital.Id" aria-expanded="false" aria-controls="@name@hospital.Id">
-                                        @hospital.Name
-                                    </button>
-                                </h5>
-                            </div>
+                            string name = @hospital.Name.Replace(" ", "");
 
-                            <div id="@name@hospital.Id" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                <div class="card-body">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#@name@hospital.Id" aria-expanded="false" aria-controls="@name@hospital.Id">
+                                            @hospital.Name
+                                        </button>
+                                    </h5>
+                                </div>
 
-                                    @hospital.Wards.Count Ward(s)
+                                <div id="@name@hospital.Id" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
 
-                                    @foreach(Ward ward in hospital.Wards)
-                                    {
+                                        @hospital.Wards.Count Ward(s)
 
-                                        <div class="card">
+                                        @foreach (Ward ward in hospital.Wards)
+                                        {
 
-                                            <div class="card-header" id="headingOne">
-                                                <h5 class="mb-0">
-                                                    <div>
-                                                        @ward.Name | @ward.Beds.Count Available Beds
-                                                    </div>
-                                                </h5>
+                                            <div class="card">
+
+                                                <div class="card-header" id="headingOne">
+                                                    <h5 class="mb-0">
+                                                        <div>
+                                                            @ward.Name | @ward.Beds.Count Available Beds
+                                                        </div>
+                                                    </h5>
+                                                </div>
+
                                             </div>
 
-                                        </div>
 
-                                        
-                                    }
+                                        }
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                
 
-                    }
 
+                        }
+                    }                   
                 
 
                 </div>

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using VacancyChecker.Data;
 using VacancyChecker.Models;
 using VacancyChecker.ServiceInterfaces;
+using VacancyChecker.Data;
 
 namespace VacancyChecker.Services
 {

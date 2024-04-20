@@ -1,5 +1,6 @@
-﻿using VacancyChecker.Data;
+﻿using VacancyChecker;
 using VacancyChecker.Models;
+using VacancyChecker.Data;
 
 namespace VacancyChecker.ServiceInterfaces
 {

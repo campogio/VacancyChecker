@@ -9,7 +9,5 @@ public partial class Patient
 
     public string? Name { get; set; }
 
-    public int? BedId { get; set; }
-
-    public virtual Bed? Bed { get; set; }
+    public virtual ICollection<Bed> Beds { get; set; } = new List<Bed>();
 }

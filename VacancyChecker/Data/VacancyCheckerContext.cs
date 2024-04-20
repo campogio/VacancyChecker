@@ -31,12 +31,19 @@ public partial class VacancyCheckerContext : DbContext
     {
         modelBuilder.Entity<Bed>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC0762863D18");
+            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC070E707DF4");
 
             entity.ToTable("Bed");
 
             entity.Property(e => e.PatientId).HasColumnName("Patient_Id");
+            entity.Property(e => e.PatientLeavingAt)
+                .HasColumnType("datetime")
+                .HasColumnName("Patient_LeavingAt");
             entity.Property(e => e.WardId).HasColumnName("Ward_Id");
+
+            entity.HasOne(d => d.Patient).WithMany(p => p.Beds)
+                .HasForeignKey(d => d.PatientId)
+                .HasConstraintName("FK_Bed_To_Patient");
 
             entity.HasOne(d => d.Ward).WithMany(p => p.Beds)
                 .HasForeignKey(d => d.WardId)
@@ -61,12 +68,7 @@ public partial class VacancyCheckerContext : DbContext
 
             entity.ToTable("Patient");
 
-            entity.Property(e => e.BedId).HasColumnName("Bed_Id");
             entity.Property(e => e.Name).HasMaxLength(50);
-
-            entity.HasOne(d => d.Bed).WithMany(p => p.Patients)
-                .HasForeignKey(d => d.BedId)
-                .HasConstraintName("FK_Patient_To_Bed");
         });
 
         modelBuilder.Entity<Ward>(entity =>

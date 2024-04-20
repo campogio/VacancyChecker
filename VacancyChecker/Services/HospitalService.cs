@@ -1,8 +1,8 @@
 ﻿using VacancyChecker.Models;
 using VacancyChecker.ServiceInterfaces;
 using System.Linq;
-using VacancyChecker.Data;
 using Microsoft.EntityFrameworkCore;
+using VacancyChecker.Data;
 
 namespace VacancyChecker.Services
 {
@@ -49,6 +49,21 @@ namespace VacancyChecker.Services
                 var query = from Hospital in e.Hospitals select Hospital;
 
                 hospitals = query.Include(x => x.Wards).ThenInclude(x => x.Beds.Where(y => y.PatientId == null)).ToList();
+
+                return hospitals;
+            }
+        }
+
+        public IEnumerable<Hospital> getByAvailableBeds(DateTime patientArrival)
+        {
+            using (VacancyCheckerContext e = new VacancyCheckerContext())
+            {
+
+                IEnumerable<Hospital> hospitals;
+
+                var query = from Hospital in e.Hospitals select Hospital;
+
+                hospitals = query.Include(x => x.Wards).ThenInclude(x => x.Beds.Where(y => y.PatientId == null || y.PatientLeavingAt < patientArrival)).ToList();
 
                 return hospitals;
             }
