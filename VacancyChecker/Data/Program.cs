@@ -1,4 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using VacancyChecker.Data;
+using VacancyChecker.Models;
+using VacancyChecker.ServiceInterfaces;
+using VacancyChecker.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<VacancyCheckerContext>(options => options.UseSqlServer("DefaultConnection"));
+builder.Services.AddScoped<IBedService,BedService>();
+builder.Services.AddScoped<IHospitalService, HospitalService>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -1,0 +1,117 @@
+﻿@using VacancyChecker.Data
+@model VacancyChecker.Models.BedSearchModel
+
+@{
+    ViewData["Title"] = "Vacancy View";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Sidebar Layout</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        /* Adjust sidebar width and padding */
+        .sidebar {
+            width: 250px;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        /* Adjust content padding to allow space for the fixed navbar */
+        .content {
+            padding-top: 20px; /* Adjust as needed */
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 sidebar">
+                <h2>Sidebar</h2>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">All By Hospital</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link 3</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Content -->
+            <div class="col-md-9 content">
+                <h2>Content</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel justo vitae risus tempor blandit. Nullam rutrum, libero vel gravida efficitur, magna enim ultrices purus, at malesuada nunc dui et purus. Sed dapibus suscipit vestibulum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum convallis odio et ipsum luctus, id tincidunt eros commodo. Duis ut quam eu erat varius fermentum. Nulla facilisi. Vestibulum mattis, enim non lacinia mollis, lacus ex feugiat ipsum, non lacinia nisi mi et lectus.</p>
+
+                <div id="accordion">
+
+
+                    @foreach (Hospital hospital in Model.results)
+                    {
+
+                        string name = @hospital.Name.Replace(" ", "");
+
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#@name@hospital.Id" aria-expanded="false" aria-controls="@name@hospital.Id">
+                                        @hospital.Name
+                                    </button>
+                                </h5>
+                            </div>
+
+                            <div id="@name@hospital.Id" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                <div class="card-body">
+
+                                    @hospital.Wards.Count Ward(s)
+
+                                    @foreach(Ward ward in hospital.Wards)
+                                    {
+
+                                        <div class="card">
+
+                                            <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                    <div>
+                                                        @ward.Name | @ward.Beds.Count Total Beds | ? Available beds
+                                                    </div>
+                                                </h5>
+                                            </div>
+
+                                        </div>
+
+                                        
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                
+
+                    }
+
+                
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

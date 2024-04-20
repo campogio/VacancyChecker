@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VacancyChecker", "VacancyChecker\VacancyChecker.csproj", "{538F0C80-CF36-435F-A9CF-E696F1E3500B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VacancyChecker", "VacancyChecker\VacancyChecker.csproj", "{538F0C80-CF36-435F-A9CF-E696F1E3500B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

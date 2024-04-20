@@ -31,11 +31,10 @@ public partial class VacancyCheckerContext : DbContext
     {
         modelBuilder.Entity<Bed>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Bed__3214EC075FC9CCBD");
+            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC0762863D18");
 
             entity.ToTable("Bed");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.PatientId).HasColumnName("Patient_Id");
             entity.Property(e => e.WardId).HasColumnName("Ward_Id");
 
@@ -46,11 +45,10 @@ public partial class VacancyCheckerContext : DbContext
 
         modelBuilder.Entity<Hospital>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Hospital__3214EC07ED7B8CD8");
+            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC07EEEA1ED7");
 
             entity.ToTable("Hospital");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -59,11 +57,10 @@ public partial class VacancyCheckerContext : DbContext
 
         modelBuilder.Entity<Patient>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Patient__3214EC07A6879F46");
+            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC07BDF9732A");
 
             entity.ToTable("Patient");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.BedId).HasColumnName("Bed_Id");
             entity.Property(e => e.Name).HasMaxLength(50);
 
@@ -74,11 +71,10 @@ public partial class VacancyCheckerContext : DbContext
 
         modelBuilder.Entity<Ward>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Ward__3214EC074CA26B75");
+            entity.HasKey(e => e.Id).HasName("PK__tmp_ms_x__3214EC0726E5DF23");
 
             entity.ToTable("Ward");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
             entity.Property(e => e.HospitalId).HasColumnName("Hospital_Id");
             entity.Property(e => e.Name)
                 .HasMaxLength(10)
